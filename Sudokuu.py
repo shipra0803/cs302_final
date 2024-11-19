@@ -1,4 +1,4 @@
-# claude2.py
+# sudokuu.py
 import pygame
 import random
  
