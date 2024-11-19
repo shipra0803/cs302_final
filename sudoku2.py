@@ -17,10 +17,10 @@ val = 0
 # Difficulty Levels
 DIFFICULTY_LEVELS = [
     {"name": "Easy", "empty_cells": 20, "bg": "beach.jpg"},
-    {"name": "Novice", "empty_cells": 35, "bg": "mtn.jpg"},
+    {"name": "Novice", "empty_cells": 35, "bg": "mount.jpg"},
     {"name": "Mild", "empty_cells": 45, "bg": "forest.jpg"},
     {"name": "Evil", "empty_cells": 55, "bg": "arctic.jpg"},
-    {"name": "Impossible", "empty_cells": 65, "bg": "desert.jpg"}
+    {"name": "Impossible", "empty_cells": 65, "bg": "des.jpg"}
 ]
 
 # Load background images
