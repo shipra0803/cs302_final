@@ -4,17 +4,17 @@ import random
 # initialise the pygame font
 pygame.font.init()
  
-# Total window
+# Total window (pixel x pixel)
 screen = pygame.display.set_mode((700, 600))
  
-# Title and Icon
+# Set title and set up our variables
 pygame.display.set_caption("SUDOKU SOLVER USING BACKTRACKING")
 x = 0
 y = 0
 dif = 500 / 9
 val = 0
 
-# Difficulty Levels
+# Difficulty Levels, dictionary
 DIFFICULTY_LEVELS = [
     {"name": "Easy", "empty_cells": 20, "bg": "beach.jpg"},
     {"name": "Novice", "empty_cells": 35, "bg": "mount.jpg"},
@@ -23,7 +23,7 @@ DIFFICULTY_LEVELS = [
     {"name": "Impossible", "empty_cells": 65, "bg": "des.jpg"}
 ]
 
-# Load background images
+# Iterate through DIFFICULTY_LEVELS to set the background images
 background_images = {}
 try:
     for level in DIFFICULTY_LEVELS:
@@ -36,9 +36,9 @@ except pygame.error:
     print("Warning: Could not load one or more background images. Using fallback color.")
 
 global current_difficulty
-current_difficulty = DIFFICULTY_LEVELS[1]  # Default to "Easy"
+current_difficulty = DIFFICULTY_LEVELS[1]  # Start from "Novice", 2nd level
 
-# Default Sudoku Board
+# Default Sudoku Board, 2D List
 default_grid =[
     [7, 8, 0, 4, 0, 0, 1, 2, 0],
     [6, 0, 0, 0, 7, 5, 0, 0, 9],
@@ -51,7 +51,7 @@ default_grid =[
     [0, 4, 9, 2, 0, 6, 0, 0, 7]
 ]
  
-# Load test fonts for future use
+# font1 = main numbers, font2 = instructions
 font1 = pygame.font.SysFont("Arial", 40)
 font2 = pygame.font.SysFont("Arial", 20)
 
@@ -89,28 +89,6 @@ def is_valid_move(grid, row, col, num):
         for j in range(3):
             if grid[i + start_row][j + start_col] == num:
                 return False 
-    return True
-
-def valid(grid, row, col, val):
-    """Check if the value can be placed at the given row and column"""
-    # Check row
-    for x in range(9):
-        if grid[row][x] == val:
-            return False
-    
-    # Check column
-    for x in range(9):
-        if grid[x][col] == val:
-            return False
-    
-    # Check 3x3 box
-    start_row = (row // 3) * 3
-    start_col = (col // 3) * 3
-    for i in range(3):
-        for j in range(3):
-            if grid[start_row + i][start_col + j] == val:
-                return False
-    
     return True
 
 def solve(grid, row, col):
@@ -287,7 +265,7 @@ while run:
                 if event.key in (pygame.K_1, pygame.K_2, pygame.K_3, pygame.K_4, 
                          pygame.K_5, pygame.K_6, pygame.K_7, pygame.K_8, pygame.K_9):
                     val = int(event.unicode)
-                    if valid(grid, row, col, val):
+                    if is_valid_move(grid, row, col, val):
                         grid[row][col] = val
                         flag1 = 0
                     else:
