@@ -218,10 +218,31 @@ def raise_error1():
     pygame.time.delay(1000)
 
 def raise_error2():
-    text1 = font2.render("WRONG!", 1, (255, 0, 0))
-    screen.blit(text1, (510, 500))
+    # bold wrong message
+    bold_font = pygame.font.SysFont("Arial", 30, bold=True)
+    text1 = bold_font.render("WRONG!", 1, (255, 0, 0))
+
+      # Get text dimensions
+    text_width = text1.get_width()
+    text_height = text1.get_height()
+    
+    # Calculate center position
+    text_x = (500 - text_width) // 2  # Center horizontally within the game board
+    text_y = 250  # Vertically centered on the board
+    
+    # Draw white background highlight
+    highlight_surface = pygame.Surface((text_width + 20, text_height + 20), pygame.SRCALPHA)
+    highlight_surface.fill((255, 255, 255, 200))  # White with some transparency
+    screen.blit(highlight_surface, (text_x - 10, text_y - 10))
+    
+    # Draw text
+    screen.blit(text1, (text_x, text_y))
+    
     pygame.display.update()
     pygame.time.delay(1000)
+    '''screen.blit(text1, (510, 500))
+    pygame.display.update()
+    pygame.time.delay(1000) '''
 
 # Main game loop
 grid = generate_sudoku(current_difficulty)
