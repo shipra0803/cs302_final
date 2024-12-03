@@ -1,2 +1,2 @@
 # cs302_final
-Sudoku 
+Sudou Final Project
