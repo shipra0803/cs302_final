@@ -88,7 +88,7 @@ font2 = pygame.font.SysFont("Arial", 20)
 
 # Function to generate a Sudoku board based on difficulty
 def generate_sudoku(difficulty):
-    """Generate a Sudoku board with a specified number of empty cells"""
+    # Generate a Sudoku board with a specified number of empty cells
     solved_grid = solve_full_grid(default_grid)
     grid_copy = [row[:] for row in solved_grid]
     
